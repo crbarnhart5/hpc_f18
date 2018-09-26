@@ -1,3 +1,8 @@
+/*
+ * Example that shows the problem with shared variables using threads.
+ *
+ * J. Hollingsworth
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>

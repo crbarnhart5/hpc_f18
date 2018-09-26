@@ -1,3 +1,8 @@
+/*
+ * Hello, World using pThreads
+ *
+ * J. Hollingsworth
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -14,9 +19,9 @@ void *print_hello(void *thread_id) {
 int main() {
    pthread_t threads[NUM_THREADS];
 
+   // create threads
    for (int t = 0; t < NUM_THREADS; t++) {
       printf("In main: creating threads %d\n", t);
-
       int rc = pthread_create(&threads[t], NULL, print_hello, (void *)(long) t);
       if (rc) {
          fprintf(stderr, "ERROR: return code from pthread_create() is %d\n", rc);
@@ -24,3 +29,4 @@ int main() {
       }
    }
 }
+/* gcc -o hello_pthread hello_pthread.c */

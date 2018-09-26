@@ -1,3 +1,8 @@
+/*
+ * Monte Carlo Pi using threads.
+ *
+ * J. Hollingsworth
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -20,8 +25,6 @@ void *monte_carlo_loop(void * thread_id) {
   int inside = 0;
   for (int i = 0; i < ITERATIONS/NUM_THREADS; i++) {
     // throw a random dart
-    //double x = arc4random_uniform(RAND_MAX)/(double)RAND_MAX;
-    //double y = arc4random_uniform(RAND_MAX)/(double)RAND_MAX;
     double x = rand()/(double)RAND_MAX;
     double y = rand()/(double)RAND_MAX;
 
@@ -76,6 +79,6 @@ int main() {
   printf("elpased time: %llu ms\n", delta_ms);
 
   printf("Iterations: %d ==> %g\n", ITERATIONS, sum/(double)ITERATIONS*4);
-
 }
+/* gcc -o monte_carlo_pi_threaded monte_carlo_pi_threaded.c */
 
