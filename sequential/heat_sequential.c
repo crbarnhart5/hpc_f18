@@ -1,3 +1,8 @@
+/* 
+ * Heat simulation for a square room.
+ *
+ * J. Hollingsworth
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -14,6 +19,7 @@
 
 int main() {
 
+   // the room (need 2 since we're doing a discrete event simulation)
    double new_grid[SZ][SZ];
    double old_grid[SZ][SZ];
 
@@ -43,6 +49,7 @@ int main() {
       heater_location_x[i] = x_center;
       heater_location_y[i] = y_center;
 
+      // set the heaters to HOT
       for (int x = 0; x < HEATER_SZ; x++) {
          for (int y = 0; y < HEATER_SZ; y++) {
             old_grid[x_center - HEATER_SZ/2 + x][y_center - HEATER_SZ/2 + y] = HOT;
@@ -51,10 +58,10 @@ int main() {
    }
 
 
+   // open the window for graphics
    gfx_open(SZ, SZ, "Heat Transfer");
 
    for (int i = 0; i < ITERATIONS; i++) {
-
       printf("Step %d\n", i);
    
       // draw the room
@@ -105,16 +112,4 @@ int main() {
    return 0;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* gcc -o heat_sequential heat_sequential.c gfx.c -I/usr/X11/include -L/usr/X11/lib -lX11 */
